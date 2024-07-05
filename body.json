@@ -1,0 +1,11 @@
+
+   {
+     
+      "phone": 12341,
+      "name": "Ritu",
+      "course": [
+        "c",
+        "java"
+      ],
+      "location": "phoenix"
+    }
