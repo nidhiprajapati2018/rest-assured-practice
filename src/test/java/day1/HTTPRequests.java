@@ -26,20 +26,21 @@ validate status code, extract response, extract headers cookies & response body.
 
 public class HTTPRequests {
 	
-	int id;
+	int id; 
 	
-	@Test(priority = 1)
+	//@Test(priority = 1)
      void getUsers() {
 		
 		given()
 		
 		.when()
-		  .get("https://reqres.in/api/users?page=2")
+		  .get("https://reqres.in/api/users?page=1")
 		
 		.then()
 		 .statusCode(200)          //Validation status code
-		 .body("page", equalTo(2)) // 
+		 .body("id", equalTo(2)) // 
 		 .log().all(); // Log in console
+	
 		
 		
 	}
@@ -47,25 +48,28 @@ public class HTTPRequests {
      @Test(priority = 2)
 	void createUser() {
 		
-		HashMap<String, String> hm = new HashMap <String, String>();
+		HashMap<String, String> hm = new HashMap <String, String>();// prepare the data
 		hm.put("name", "Rob");
 		hm.put("job","Software");
 		
-	 given()
+	  id = given()
 		     .contentType("application/json")
 		     .body(hm)
 		.when()
 		  .post("https://reqres.in/api/users")
-		  .jsonPath().getInt("id ");
+		  .jsonPath().getInt("id ");  // .jsonPath().getInt("id "); Remember this capture the id
+	
+	System.out.println("generated id "+id);
 		  
-//		.then()
-//		  .statusCode(201)
-//		  .log().all();
+		//.then()
+		//  .statusCode(201)
+	  //.log().all();
 		  
 		
 	}
      
-     @Test(priority=3, dependsOnMethods = {"createUser"})
+     @Test(priority=3, dependsOnMethods = {"createUser"})  // By using dependOnMethos before executing this methods first check create user 
+                                                           //is pass or not then it executing otherwise it will skipped
      void updateUser() {
     	 
     	 
@@ -96,6 +100,8 @@ public class HTTPRequests {
     	    .statusCode(204)
     	    .log().all();
      }
+     
+     
 
 
 	

@@ -20,7 +20,7 @@ public class ParsingJSONResponseData {
 		//Approch1
 		
 		/*given()
-			.contentType("ContentTypr.JSON")
+			.contentType("ContentType.JSON")
 		.when()
 			.get("http://localhost:3000/book")
 		.then()
@@ -38,7 +38,7 @@ public class ParsingJSONResponseData {
 		Assert.assertEquals(res.getStatusCode(),200);  //validation1
 		Assert.assertEquals(res.header("Content-Type"),"application/json" );
 		
-		String bookName = res.jsonPath().get("[3].title").toString();
+		String bookName = res.jsonPath().get("[3].title").toString();   //validate the field
 		
 		Assert.assertEquals(bookName, "saying of the century");
 		
@@ -46,20 +46,14 @@ public class ParsingJSONResponseData {
 	}
 	
 	@Test(priority=2)
-	void testJSONResponseBodyData() {
+	void testJSONResponseBodyData() {  ////Search the particulat element of the json(book) whether other is change
 		
 		
 		Response res = given()
 				.contentType(ContentType.JSON)
 		.when()
 				.get("http://localhost:3000/store");
-		
-//		Assert.assertEquals(res.getStatusCode(),200);  //validation1
-//		Assert.assertEquals(res.header("Content-Type"),"application/json" );
-//		
-//		String bookName = res.jsonPath().get("[3].title").toString();
-//		
-//		Assert.assertEquals(bookName, "saying of the century");
+	
 		
 		//JSONObject class we already add dependency in pom.xml
 		//Search the title of the book
@@ -69,7 +63,7 @@ public class ParsingJSONResponseData {
 		
 		for(int i=0; i<jo.getJSONArray("book").length(); i++ ){
 			
-			String bookTitle = jo.getJSONArray("book").getJSONObject(i).get("title").toString();
+			String bookTitle = jo.getJSONArray("book").getJSONObject(i).get("title").toString(); // its main thing to remember
 			System.out.println(bookTitle);
 			
 			if(bookTitle.equals("saying of the century")) {

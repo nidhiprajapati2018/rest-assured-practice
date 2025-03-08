@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class Authentication {
 	
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	void testBasicAuthentication() {
 		
 		given()
@@ -21,7 +21,7 @@ public class Authentication {
 			.log().all();
 	}
 	
-	//@Test(priority = 2)
+	@Test(priority = 2)
 	void testDigestAuthentication() {
 		
 		given()
@@ -78,7 +78,7 @@ public class Authentication {
 		
 	}
 	
-	@Test(priority=6)
+	//@Test(priority=6)
 	void testOAuth2Authentication() {
 		
 		given()
